@@ -56,4 +56,19 @@ public class CalculadoraTest {
         assertEquals(OperacionNoValidaException.MSG, ex.getMessage());
 
     }
+
+    @Test
+    @DisplayName("Probar divisiones válidas según los casos de uso")
+    void dividir() throws OperacionNoValidaException {
+        assertAll("Casos de uso de la División",
+            // Caso 1: División exacta
+            () -> assertEquals(2, Calculadora.dividir(10, 5), "10 / 5 = 2"),
+            // Caso 2: División truncada
+            () -> assertEquals(2, Calculadora.dividir(5, 2), "5 / 2 = 2 (se truncan decimales)"),
+            // Caso 3: Negativos
+            () -> assertEquals(-3, Calculadora.dividir(-9, 3), "-9 / 3 = -3"),
+            // Caso 4: Dividendo cero
+            () -> assertEquals(0, Calculadora.dividir(0, 4), "0 / 4 = 0")
+        );
+    }
 }
